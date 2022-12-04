@@ -44,6 +44,7 @@
 
 
 @*Doughnut and Spline Chart*@
+@*Doughnut*@
 <div class="row mb-4">
     <div class="col-md-4">
         <div class="widget chart">
@@ -68,6 +69,7 @@
             </ejs-accumulationchart>
         </div>
     </div>
+     @*Spline Chart*@
     <div class="col-md-8">
         <div class="widget chart">
             <div class="p-4">
@@ -111,6 +113,35 @@
                 @*Tooltip*@
                 <e-chart-tooltipsettings enable shared></e-chart-tooltipsettings>
             </ejs-chart>
+        </div>
+    </div>
+</div>
+
+@*Recent Transactions and More*@
+<div class="row">
+    <div class="col-md-6">
+        <div class="widget">
+            <div class="p-4">
+                <h5 class="fw-bold">Recent Transactions</h5>
+            </div>
+            <div class="px-4 pb-4">
+                <ejs-grid id="recent-transactions" dataSource="@ViewBag.RecentTransactions" gridLines="None">
+                    <e-grid-columns>
+                        <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
+                        <e-grid-column headerText="Date" field="Date" type="date" format="MMM-dd-yy" textalign="Left" width="150px"></e-grid-column>
+                        <e-grid-column headerText="Amount" field="FormattedAmount" textalign="Left" width="150px"></e-grid-column>
+                    </e-grid-columns>
+                </ejs-grid>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="widget h-100">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <a href="#">
+                    <span><i class="fa-solid fa-plus fa-2xl"></i> Widget</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
