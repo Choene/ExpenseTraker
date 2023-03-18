@@ -2,9 +2,116 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    List<Object> menuItems = new List<Object>();
+
+    menuItems.Add(new
+    {
+        text = "Dashboard",
+        url = "/",
+        iconCss = "fa-solid fa-box"
+    });
+
+    menuItems.Add(new
+    {
+        text = "General",
+        separator = true,
+    });
+
+    menuItems.Add(new
+    {
+        text = "Categories",
+        url = "/Category",
+        iconCss = "fa-solid fa-folder-closed",
+        items = new List<object>(){
+            new 
+            { 
+                text = "Add Category",
+                url = "/Category/AddorEdit"
+            },
+            new { text = "Income" },
+            new { text = "Expense" },
+            new { text = "Budget" }
+        }
+    });
+    
+    menuItems.Add(new
+    {
+        text = "Transactions",
+        url = "/Transaction",
+        iconCss = "fa-solid fa-arrow-right-arrow-left",
+        items = new List<object>(){
+            new
+            {
+                text = "Add Transaction",
+                url = "/Transaction/AddorEdit"
+            },
+            new { text = "Income" },
+            new { text = "Expense" },
+            new { text = "Budget" }
+        }
+    });
+    
+    menuItems.Add(new
+    {
+        text = "Extras",
+        separator = true,
+    });
+
+    menuItems.Add(new
+    {
+        text = "Reports",
+        url = "#",
+        iconCss = "fa-solid fa-chart-simple",
+        items = new List<object>(){
+            new { text = "Income" },
+            new { text = "Expense" },
+            new { text = "Budget" }
+        }
+    });
+    
+    menuItems.Add(new
+    {
+        text = "Settings",
+        url = "/#",
+        iconCss = "fa-solid fa-gear",
+        items = new List<object>(){
+            new { text = "Income" },
+            new { text = "Expense" },
+            new { text = "Budget" }
+        }
+    });
 }
 
 
-<ejs-sidebar id="sidebar" width="290px">
+<ejs-sidebar id="sidebar" width="290px" enableDock dockSize="100px" target=".dock-target" enableGestures="false">
+    <e-content-template>
 
+        <div class="logo-wrapper">
+            <div class="app-logo">
+                <img src="~/favicon-32x32.png" />
+            </div>
+            <div class="titles d-flex flex-column ps-3">
+                <h6 class="mb-0">Expense Tracker</h6>
+            </div>
+            <div class="w-40"></div>
+            @*<i id="sidebar-toggler" class="fa-solid"></i>*@
+        </div>
+
+        <div class="profile-wrapper">
+            <img class="profile-pic" src="~/profile.jpg" />
+            <div class="titles d-flex flex-column ps-3">
+                <span class="text-muted">User Name</span>
+            </div>
+        </div>
+        <ejs-menu id="menu" items="menuItems" orientation="Vertical" ></ejs-menu>
+    </e-content-template>
 </ejs-sidebar>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function (){
+        dockBar = ducument.getElementById('sidebar').ej2_instances[0];
+        document.getElementById('sidebar-toggler').onclick = function () {
+            dockBar.toggle();
+        }
+    })
+</script>
